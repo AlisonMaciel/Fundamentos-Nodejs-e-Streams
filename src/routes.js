@@ -62,8 +62,8 @@ export const routes = [
     path: buildRoutePath("/tasks/:id"),
     handler: (req, res) => {
       const {id} = req.params
-      const {completed_at} = req.body
-      db.updateIdTask("tasks", id, {completed_at})
+      const {completed_at, updated_at} = req.body
+      db.update("tasks", id, {completed_at, updated_at: new Date()})
       return res.end("Task marked as complete")
     }
   }
